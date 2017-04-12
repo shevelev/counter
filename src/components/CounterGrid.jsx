@@ -1,16 +1,13 @@
-import React from 'react';
-import classNames from 'classnames';
+import React, { Component } from 'react';
 import CounterItem from './CounterItem.jsx';
 
-const CounterGrid = React.createClass({
-
+class CounterGrid extends Component {
 
     render() {
-
         return (
             <div>
                 <div className='title'>
-                    Список счетчиков из counters
+                    Списки
                     <hr />
                     {
                        this.props.counters.map(function(count) {
@@ -19,16 +16,12 @@ const CounterGrid = React.createClass({
                                 key={count.id}
                                 id={count.id}
                                 title={count.zone_descr}
-                                timer={count.zone_timer}
-                                start={Date.now()}> {count.id}</CounterItem>
+                                timer={count.zone_timer}> {count.id}</CounterItem>
                        })}
-
-
                 </div>
-
             </div>
         );
     }
-});
+}
 
 export default CounterGrid;

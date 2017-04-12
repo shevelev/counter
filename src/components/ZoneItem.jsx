@@ -1,13 +1,10 @@
-import React from 'react';
-import classNames from 'classnames';
+import React, { Component } from 'react';
 
 import './ZoneItem.less';
 
-const ZonePreview = React.createClass({
+class ZoneItem  extends Component {
     render() {
         const { title, onClick } = this.props;
-
-        // const classes = classNames('list-group-item', { active });
 
         return (
             <div className='list-group-item' onClick={onClick}>
@@ -18,6 +15,6 @@ const ZonePreview = React.createClass({
             </div>
         );
     }
-});
+};
 
-export default ZonePreview;
+export default ZoneItem;
