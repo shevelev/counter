@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f55ca1c-ce50-439c-a854-b378ad435f67" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/CountCon.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reducers/index.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/npm-debug.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/delete/AboutPage.jsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/delete/AboutPage.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/delete/CounterZones.jsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/delete/InboxPage.jsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/delete/Message.jsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/delete/Message.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/delete/MessagePreview.jsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/delete/TimerPage2.jsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/delete/Zone.jsx" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.jsx" afterPath="$PROJECT_DIR$/src/App.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/CounterGrid.jsx" afterPath="$PROJECT_DIR$/src/components/CounterGrid.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/CounterItem.jsx" afterPath="$PROJECT_DIR$/src/components/CounterItem.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/ZoneItem.jsx" afterPath="$PROJECT_DIR$/src/components/ZoneItem.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/ZoneList.jsx" afterPath="$PROJECT_DIR$/src/components/ZoneList.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.js" afterPath="$PROJECT_DIR$/src/main.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -319,12 +300,12 @@
       <workItem from="1490268415521" duration="39000" />
       <workItem from="1490964152507" duration="5301000" />
       <workItem from="1491569752435" duration="7273000" />
-      <workItem from="1491821511490" duration="25103000" />
+      <workItem from="1491821511490" duration="25683000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75480000" />
+    <option name="totallyTimeSpent" value="76060000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1296" height="1040" extended-state="6" />
