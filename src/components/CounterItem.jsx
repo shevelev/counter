@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { Component }  from 'react';
 import classNames from 'classnames';
 import Progress from 'react-progressbar';
+import  { connect } from 'react-redux';
 
-import './CounterItem.less';
+//const CounterItem = React.createClass({
+let elapsed = 0;
+let procent = 0;
 
-const CounterItem = React.createClass({
+class CounterItem extends Component {
 
-    getInitialState: function(){
-        return {elapsed: 0, procent:0};
-    },
+    constructor(props) {
+        super(props);
+        this.state = {elapsed: 0, procent:0} ;
+        this.delete_timers = this.delete_timers.bind(this);
+        this.timer_start = this.timer_start.bind(this);
+        this.timer_stop = this.timer_stop.bind(this);
+        this.tick = this.tick.bind(this);
+    }
 
-    timer_start: function(){
+
+
+    componentWillUnmount() {
+
+        if (this.timer>0) {
+            clearInterval(this.timer);
+            console.log('[delete] таймер при закрытие зоны: ', this.timer);
+        }
+    }
+
+    timer_start(){
 
         console.log('[current] таймер',this.timer)
         // если таймер уже существует, то дропаем его, и создаем новый
@@ -20,35 +38,37 @@ const CounterItem = React.createClass({
         this.start2 = Date.now() + this.props.timer*60;
         this.timer = setInterval(this.tick, 1000);
         console.log('[create] таймер: ',this.timer);
-    },
+    }
 
-    timer_stop: function(){
+    timer_stop(){
 
         // Этот метод вызывается сразу после того, как компонент удален
         // со страницы и уничтожен. Мы можем удалить интервал здесь:
         console.log('[delete] таймер: ',this.timer);
         clearInterval(this.timer);
-    },
+    }
 
-    tick: function(){
+    tick(){
+        //console.log('таймер: ',this.timer, ' прошло: ',Math.round(this.state.elapsed / 1000), ' из ', this.props.timer*60);
+        //console.log('финиш на: ', this.props.timer*60);
+        //console.log(this);
+        if ( this.props.timer*60 > Math.round(this.state.elapsed / 1000) ) {
+            this.setState({
+                elapsed: new Date() - this.start2,
 
-        // Эта функция вызывается каждые 50мс. Она обновляет
-        // счетчик затраченного времени. Вызов setState заставляет компонент перерисовываться
+            });
+        } else {
+            clearInterval(this.timer);
+            console.log('закончили считать, счетчик грохнули');
+        }
 
-        //this.setState({elapsed: new Date() - this.props.start});
-        this.setState({
-            elapsed: new Date() - this.start2,
-
-        });
-    },
-    delete_timers: function(){
-        let noteId = this.props.id;
-        // var newNotes = this.state.counters.filter(function(note) {
-        //     return note.id !== noteId;
-        // });
-        console.log(noteId);
-        // this.setState({ counters: newNotes });
-    },
+    }
+    delete_timers(){
+        let zoneId = this.props.id;
+        this.props.onDelete_timers(zoneId);
+        // console.log(zoneId);
+        // console.log('this: ',this.props.storeCounters);
+    }
 
 
     render() {
@@ -73,18 +93,26 @@ const CounterItem = React.createClass({
                     <button name="start" className="btn btn-success" onClick={this.timer_start}>старт</button>
                     <button name="start" className="btn btn-success" onClick={this.timer_stop}>стоп</button>
                     Прошло <b>{elapsed} секунд </b> из {this.props.timer*60}
-
-
                     <div className="progress">
-                        <div className="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style={divStyle}>
-
-                        </div>
+                        <div className="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style={divStyle}></div>
                     </div>
-
                 </div>
+                <hr />
             </div>
         );
     }
-});
+};
 
-export default CounterItem;
+//export default CounterItem;
+function mapStateToProps(state) {
+    return { storeCounters: state.countList }
+}
+
+//export default TimerPage;
+export default connect(mapStateToProps,
+    dispatch => ({
+        onDelete_timers: (id) => {
+            dispatch({ type: 'DEL_COUNTER', id: id});
+        }
+    })
+)(CounterItem);

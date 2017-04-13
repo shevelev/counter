@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import './ZoneItem.less';
-
 class ZoneItem  extends Component {
     render() {
         const { title, onClick } = this.props;

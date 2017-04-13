@@ -7,7 +7,6 @@ class CounterGrid extends Component {
         return (
             <div>
                 <div className='title'>
-                    Списки
                     <hr />
                     {
                        this.props.counters.map(function(count) {
