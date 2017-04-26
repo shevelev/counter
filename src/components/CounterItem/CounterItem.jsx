@@ -1,11 +1,8 @@
 import React, { Component }  from 'react';
 import classNames from 'classnames';
-import Progress from 'react-progressbar';
 import  { connect } from 'react-redux';
 
-//const CounterItem = React.createClass({
-let elapsed = 0;
-let procent = 0;
+import { Panel,ButtonToolbar, Button, ProgressBar }  from 'react-bootstrap';
 
 class CounterItem extends Component {
 
@@ -73,39 +70,51 @@ class CounterItem extends Component {
 
     render() {
         let elapsed = Math.round(this.state.elapsed / 1000);
+
         // Это даст нам число с одной цифрой после запятой dot (xx.x):
         let seconds = elapsed.toFixed(0);
+        //let seconds = Math.round(this.state.elapsed / 1000).toFixed(0);
         let procent = ((seconds*100)/(this.props.timer*60)).toFixed(2);
+        let aa = this.props.timer*60 - elapsed;
+        let mm = (Math.floor( (aa/60) % 60 )) < 10 ? '0' + Math.floor( (aa/60) % 60 ) : Math.floor( (aa/60) % 60 );
+        let ss = (Math.floor( aa % 60 )) < 10 ? '0' + Math.floor( aa % 60 ) : Math.floor( aa % 60 );
         // Хоть мы и возвращаем целый <p> элемент, react разумно обновит
         // только измененные части, содержащие переменную seconds.
-        const divStyle = {
-            color: 'blue',
-            width: procent+'%',
-        };
         // const { key, title } = this.props;
 
+        const title = (
+            <h3>( {this.props.children} ) {this.props.title} </h3>
+        );
+
+        const divStyle = {
+            marginBottom: 0+'px'
+        };
+
+        const buttonStyle = {
+            marginTop: -47+'px',
+            color: '#2b3e50'
+        };
+
         return (
-            <div>
-                <div className='bg-success'>
-                    <button type="button" className="close" aria-label="Close" onClick={this.delete_timers}>[x]</button>
-                    <p className="bg-danger"> ( {this.props.children} ) {this.props.title} </p>
-                    {/*<mark>репоп {this.props.timer} минут</mark>*/}
-                    <button name="start" className="btn btn-success" onClick={this.timer_start}>старт</button>
-                    <button name="start" className="btn btn-success" onClick={this.timer_stop}>стоп</button>
-                    Прошло <b>{elapsed} секунд </b> из {this.props.timer*60}
-                    <div className="progress">
-                        <div className="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style={divStyle}></div>
-                    </div>
-                </div>
-                <hr />
-            </div>
+                <Panel header={title} bsStyle="success">
+                    {/*<button name="start" className="btn btn-success" onClick={this.timer_start}>старт</button>*/}
+                    {/*<button name="stop" className="btn btn-success" onClick={this.timer_stop}>стоп</button>*/}
+                    <button type="button" className="close" aria-label="Close" onClick={this.delete_timers} style={buttonStyle}>[x]</button>
+                    <ButtonToolbar>
+                        <Button bsStyle="info" bsSize="lg" disabled>{mm} : {ss}</Button>
+                        <Button bsStyle="success" bsSize="lg"onClick={this.timer_start}>Старт</Button>
+                        <Button bsStyle="danger" bsSize="lg" onClick={this.timer_stop}>Стоп</Button>
+                    </ButtonToolbar><br />
+                    {/*Прошло <b>{elapsed} секунд </b> из {this.props.timer*60} --- {mm} : {ss} ---*/}
+                    <ProgressBar striped bsStyle="info" now={parseInt(procent)} style={divStyle} />
+                </Panel>
         );
     }
 };
 
 //export default CounterItem;
 function mapStateToProps(state) {
-    return { storeCounters: state.countList }
+    return { storeCounters: state.cList }
 }
 
 //export default TimerPage;
